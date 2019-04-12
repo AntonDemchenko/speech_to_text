@@ -10,8 +10,5 @@ CLIENT_MAX_SIZE = int(os.environ.get("CLIENT_MAX_SIZE", 1024 ** 2))
 
 SPEECH = {
     "GOOGLE_API_KEY": os.environ.get("GOOGLE_API_KEY"),
-    "ENCODING": "FLAC",
     "LANGUAGE_CODE": "en-US",
-    "MAX_SIZE": 10485760,  # in bytes
-    "MAX_LENGTH": 15  # in seconds
 }
