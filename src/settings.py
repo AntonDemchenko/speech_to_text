@@ -6,6 +6,8 @@ load_dotenv(dotenv_path)
 
 DEBUG: bool = bool(int(os.environ['DEBUG']))
 
+CLIENT_MAX_SIZE = int(os.environ.get("CLIENT_MAX_SIZE", 1024 ** 2))
+
 SPEECH = {
     "GOOGLE_API_KEY": os.environ.get("GOOGLE_API_KEY"),
     "ENCODING": "FLAC",

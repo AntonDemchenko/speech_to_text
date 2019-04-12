@@ -9,7 +9,10 @@ from services import SERVICES
 
 
 async def init():
-    app = web.Application(middlewares=MIDDLEWARES)
+    app = web.Application(
+        middlewares=MIDDLEWARES,
+        client_max_size=settings.CLIENT_MAX_SIZE
+    )
     app.cleanup_ctx.extend(SERVICES)
     setup_routes(app)
     return app
