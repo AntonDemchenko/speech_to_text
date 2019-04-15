@@ -12,3 +12,7 @@ SPEECH = {
     "GOOGLE_API_KEY": os.environ.get("GOOGLE_API_KEY"),
     "LANGUAGE_CODE": "en-US",
 }
+
+JWT_ALGORITHM = "RS256"
+
+MAIN_APP_PUBKEY_URL = "http://localhost:8000/api/pubkey"

@@ -1,7 +1,6 @@
 from typing import AsyncGenerator
 from aiohttp import log
-
-MAIN_APP_PUBKEY_URL = "http://localhost:8000/api/pubkey"
+from settings import MAIN_APP_PUBKEY_URL
 
 
 async def pubkey(app) -> AsyncGenerator:

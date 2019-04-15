@@ -2,8 +2,7 @@ from aiohttp import web
 import jwt
 from jwt.exceptions import DecodeError, ExpiredSignatureError
 from utils import error
-
-JWT_ALGORITHM = "RS256"
+from settings import JWT_ALGORITHM
 
 
 @web.middleware
