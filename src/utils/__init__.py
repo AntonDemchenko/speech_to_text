@@ -1,4 +1,4 @@
-from .byte import read, convert_to_b64
+from .byte import convert_to_b64, read
 from .error import error
 
 __all__ = [

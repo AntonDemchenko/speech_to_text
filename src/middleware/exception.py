@@ -1,4 +1,4 @@
-from aiohttp import web, log
+from aiohttp import log, web
 
 from settings import DEBUG
 
