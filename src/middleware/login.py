@@ -9,9 +9,11 @@ from utils import error
 @web.middleware
 async def login_middleware(request: web.Request, handler) -> web.Response:
     try:
-        token = request.headers['Authorization'].split()[1]
+        token_type, token, *_ = request.headers['Authorization'].split()
+        if token_type != 'Bearer':
+            raise ValueError
         jwt.decode(token, request.app['pubkey'], algorithms=JWT_ALGORITHM)
-    except (KeyError, IndexError):
+    except (ValueError, KeyError, IndexError):
         return error('Authorization header is required', 401)
     except DecodeError:
         return error('Unable to decode token', 401)
