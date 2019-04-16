@@ -5,7 +5,7 @@ from aiohttp import ClientError, ClientResponse, log
 
 import settings
 from utils import convert_to_b64, read
-from .exceptions import InternalError
+from .exceptions import InternalError, RecognitionError
 
 
 class GoogleRecognizer:
@@ -35,16 +35,16 @@ class GoogleRecognizer:
             )
         except ClientError as err:
             log.client_logger.critical(str(err))
-            return None
-        else:
-            return response
+            raise InternalError('Unable to connect to Google')
+        return response
 
-    async def extract_text(self, response: ClientResponse) -> Optional[str]:
+    @staticmethod
+    async def extract_text(response: ClientResponse) -> Optional[str]:
         try:
             json = await response.json()
             text = json['results'][0]['alternatives'][0]['transcript']
         except (ValueError, KeyError, IndexError):
-            return None
+            raise RecognitionError('Unable to recognize text')
         else:
             return text
 
@@ -52,7 +52,7 @@ class GoogleRecognizer:
         audio = await read(audio_file, self.CHUNK_SIZE)
         audio_b64 = convert_to_b64(audio)
         response = await self.make_request(audio_b64)
-        if response is None or 500 <= response.status < 600:
-            raise InternalError('Unable to work with Google')
+        if 500 <= response.status < 600:
+            raise InternalError('Google server error')
         text = await self.extract_text(response)
         return text
