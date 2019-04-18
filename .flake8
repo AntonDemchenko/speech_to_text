@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 120
+inline-quotes = '
+application-import-names = middleware,recognizers,services,utils,views,settings,routes
+import-order-style = pycharm

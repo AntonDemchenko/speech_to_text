@@ -1,6 +1,5 @@
 import base64
 import io
-
 from typing import AsyncGenerator
 
 
@@ -14,7 +13,7 @@ async def chunks(stream: io.BytesIO, chunk_size: int) -> AsyncGenerator[bytes, b
 
 
 async def read(stream: io.BytesIO, chunk_size: int) -> bytes:
-    data = b""
+    data = b''
     async for chunk in chunks(stream, chunk_size):
         data += chunk
     return data
@@ -22,5 +21,5 @@ async def read(stream: io.BytesIO, chunk_size: int) -> bytes:
 
 def convert_to_b64(data: bytes) -> str:
     data = base64.b64encode(data)
-    data = data.decode("ascii")
+    data = data.decode('ascii')
     return data

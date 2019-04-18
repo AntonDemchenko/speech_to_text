@@ -1,7 +1,8 @@
+from .exceptions import InternalError, RecognitionError
 from .google import GoogleRecognizer
-from .exceptions import InternalError
 
 __all__ = [
-    "GoogleRecognizer",
-    "InternalError"
+    'GoogleRecognizer',
+    'InternalError',
+    'RecognitionError'
 ]
