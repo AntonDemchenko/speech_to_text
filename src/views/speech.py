@@ -20,7 +20,6 @@ class SpeechRecognition(web.View):
             recognizer = GoogleRecognizer(self.request.app['external_api'])
             text = await recognizer.speech_to_text(audio)
         except recognizers.InternalError:
-
             return error(
                 'Something went wrong. Please try again later.',
                 500

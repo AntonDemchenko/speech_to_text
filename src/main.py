@@ -1,5 +1,6 @@
 import logging
 
+import sentry_sdk
 from aiohttp import web
 
 import settings
@@ -9,6 +10,8 @@ from services import SERVICES
 
 
 async def init():
+    sentry_sdk.init(settings.SENTRY_DSN)
+
     app = web.Application(
         middlewares=MIDDLEWARES,
         client_max_size=settings.CLIENT_MAX_SIZE

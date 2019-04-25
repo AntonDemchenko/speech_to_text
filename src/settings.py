@@ -17,3 +17,5 @@ SPEECH = {
 JWT_ALGORITHM = 'RS256'
 
 MAIN_APP_PUBKEY_URL = 'http://localhost:8000/api/pubkey'
+
+SENTRY_DSN = os.environ.get('SENTRY_SDN')
